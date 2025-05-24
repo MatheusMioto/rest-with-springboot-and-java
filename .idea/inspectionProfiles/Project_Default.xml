@@ -1,0 +1,32 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="VulnerableLibrariesLocal" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="isIgnoringEnabled" value="true" />
+      <option name="ignoredModules">
+        <list>
+          <option value="rest-with-springboot-and-java-erudio" />
+          <option value="rest-with-springboot-and-java-erudio" />
+          <option value="rest-with-springboot-and-java-erudio" />
+          <option value="rest-with-springboot-and-java-erudio" />
+        </list>
+      </option>
+      <option name="ignoredPackages">
+        <list>
+          <option value="net.minidev:json-smart:2.5.1" />
+          <option value="ch.qos.logback:logback-classic:1.5.12" />
+          <option value="ch.qos.logback:logback-core:1.5.12" />
+          <option value="org.apache.tomcat.embed:tomcat-embed-core:10.1.33" />
+        </list>
+      </option>
+      <option name="ignoredReasons">
+        <list>
+          <option value="Not exploitable" />
+          <option value="Other" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
