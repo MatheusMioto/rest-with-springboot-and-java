@@ -21,11 +21,16 @@ public class MathController {
         }
     }
 
-    private Double convetToDouble(String numberOne){
-            return 1D;
+    private Double convetToDouble(String strNum) throws IllegalArgumentException{
+        String number = strNum.replace(",", ".");
+        if (strNum == null || strNum.isEmpty()){
+            throw new IllegalArgumentException();
+        } else{
+            return Double.parseDouble(number);
+        }
     }
 
-    private boolean isNumeric(String strNum) {
+    private boolean isNumeric(String strNum){
         String number = strNum.replace(",", ".");
         if (strNum == null || strNum.isEmpty()){
             return false;
