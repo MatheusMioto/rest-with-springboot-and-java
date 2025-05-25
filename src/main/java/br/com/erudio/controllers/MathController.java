@@ -10,10 +10,31 @@ public class MathController {
 
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     public Double sum(
-            @PathVariable("numberOne") Double numberOne,
-            @PathVariable("numberTwo") Double numberTwo
-    ){
-        return numberOne + numberTwo;
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo
+    ) throws Exception {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new IllegalArgumentException();
+        }
+        else{
+            return convetToDouble(numberOne) + convetToDouble(numberTwo);
+        }
+    }
+
+    private Double convetToDouble(String numberOne){
+            return 1D;
+    }
+
+    private boolean isNumeric(String strNum) {
+        String number = strNum.replace(",", ".");
+        if (strNum == null || strNum.isEmpty()){
+            return false;
+        }
+        else if (number.matches("[-+]?[0-9]*\\.?[0-9]+")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
