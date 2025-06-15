@@ -18,30 +18,30 @@ public class PersonController {
     private PersonServices service;
 
     @GetMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public List<PersonDTOV1> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonDTOV1 findByeId(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
     @PostMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonDTOV1 create(@RequestBody PersonDTOV1 person) {
         return service.create(person);
     }
 
     @PutMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonDTOV1 update(@RequestBody PersonDTOV1 person) {
         return service.update(person);
