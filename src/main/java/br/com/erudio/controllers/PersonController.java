@@ -1,7 +1,6 @@
 package br.com.erudio.controllers;
 
 import br.com.erudio.data.dto.v1.PersonDTOV1;
-import br.com.erudio.data.dto.v2.PersonDTOV2;
 import br.com.erudio.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
 
     @Autowired
@@ -32,20 +31,12 @@ public class PersonController {
         return service.findById(id);
     }
 
-    @PostMapping(value = "/v1",
+    @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public PersonDTOV1 create(@RequestBody PersonDTOV1 person) {
         return service.create(person);
-    }
-
-    @PostMapping(value = "/v2",
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    public PersonDTOV2 create(@RequestBody PersonDTOV2 person) {
-        return service.createV2(person);
     }
 
     @PutMapping(

@@ -1,13 +1,11 @@
 package br.com.erudio.data.dto.v1;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 
 public class PersonDTOV1 implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     private Long id;
     private String firstName;
     private String lastName;
@@ -48,23 +46,18 @@ public class PersonDTOV1 implements Serializable {
         this.address = address;
     }
 
-    public String getGender() {
-        return gender;
-    }
+    public String getGender() { return gender; }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(String gender) { this.gender = gender; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof PersonDTOV1 that)) return false;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof PersonDTOV1 person)) return false;
-        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
-    }
-
 }
