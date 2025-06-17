@@ -1,9 +1,11 @@
 package br.com.erudio.data.dto.v1;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonDTOV1 implements Serializable {
+public class PersonDTOV1 extends RepresentationModel<PersonDTOV1> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Long id;
