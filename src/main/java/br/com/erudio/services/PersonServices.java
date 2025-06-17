@@ -58,7 +58,9 @@ public class PersonServices {
 
     public PersonDTOV1 update(PersonDTOV1 person){
         logger.info("Updating one Person!");
-        if(person != null){
+        if(person == null){
+            throw new RequiredObjectIsNullException();
+        }else{
             Person entity = repository.findById(person.getId())
                     .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
             entity.setFirstName(person.getFirstName());
@@ -68,8 +70,6 @@ public class PersonServices {
             var dto = parseObject(repository.save(entity), PersonDTOV1.class);
             addHateoasLinks(dto);
             return dto;
-        }else{
-            throw new RequiredObjectIsNullException("It is not allowed to persist a null object!");
         }
     }
 
