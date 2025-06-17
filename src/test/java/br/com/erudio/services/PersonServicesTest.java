@@ -1,6 +1,7 @@
 package br.com.erudio.services;
 
 import br.com.erudio.data.dto.v1.PersonDTOV1;
+import br.com.erudio.exception.RequiredObjectIsNullException;
 import br.com.erudio.model.Person;
 import br.com.erudio.repository.PersonRepository;
 import br.com.erudio.unitetests.mapper.mocks.MockPerson;
@@ -132,6 +133,16 @@ class PersonServicesTest {
     }
 
     @Test
+    void testCreatedWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class,
+        () -> service.create(null));
+
+        String expectedMessage = "It is not allowed to persist a null object!";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
     void update() {
         Person person = input.mockEntity(1);
         Person persisted = person;
@@ -178,6 +189,16 @@ class PersonServicesTest {
         assertEquals("Last Name Test1", result.getLastName());
         assertEquals("Address Test1", result.getAddress());
         assertEquals("Female", result.getGender());
+    }
+
+    @Test
+    void testUpdatedWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class,
+                () -> service.update(null));
+
+        String expectedMessage = "It is not allowed to persist a null object!";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test

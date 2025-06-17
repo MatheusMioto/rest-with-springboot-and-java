@@ -3,6 +3,7 @@ package br.com.erudio.services;
 
 import br.com.erudio.controllers.PersonController;
 import br.com.erudio.data.dto.v1.PersonDTOV1;
+import br.com.erudio.exception.RequiredObjectIsNullException;
 import br.com.erudio.exception.ResourceNotFoundException;
 import  static br.com.erudio.mapper.ObjectMapper.parseListObjects;
 import  static br.com.erudio.mapper.ObjectMapper.parseObject;
@@ -44,24 +45,32 @@ public class PersonServices {
     }
 
     public PersonDTOV1 create(PersonDTOV1 person){
-        logger.info("Creating one Person!");
-        var entity = parseObject(person, Person.class);
-        var dto = parseObject(repository.save(entity), PersonDTOV1.class);
-        addHateoasLinks(dto);
-        return dto;
+        if (person == null) {
+            throw new RequiredObjectIsNullException();
+        }else {
+            logger.info("Creating one Person!");
+            var entity = parseObject(person, Person.class);
+            var dto = parseObject(repository.save(entity), PersonDTOV1.class);
+            addHateoasLinks(dto);
+            return dto;
+        }
     }
 
     public PersonDTOV1 update(PersonDTOV1 person){
         logger.info("Updating one Person!");
-        Person entity = repository.findById(person.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
-        entity.setFirstName(person.getFirstName());
-        entity.setLastName(person.getLastName());
-        entity.setAddress(person.getAddress());
-        entity.setGender(person.getGender());
-        var dto = parseObject(repository.save(entity), PersonDTOV1.class);
-        addHateoasLinks(dto);
-        return dto;
+        if(person != null){
+            Person entity = repository.findById(person.getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+            entity.setFirstName(person.getFirstName());
+            entity.setLastName(person.getLastName());
+            entity.setAddress(person.getAddress());
+            entity.setGender(person.getGender());
+            var dto = parseObject(repository.save(entity), PersonDTOV1.class);
+            addHateoasLinks(dto);
+            return dto;
+        }else{
+            throw new RequiredObjectIsNullException("It is not allowed to persist a null object!");
+        }
     }
 
     public void delete(Long id){
