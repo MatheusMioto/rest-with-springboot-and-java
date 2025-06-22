@@ -45,10 +45,11 @@ public class PersonServices {
     }
 
     public PersonDTOV1 create(PersonDTOV1 person){
+        logger.info("Creating one Person!");
         if (person == null) {
             throw new RequiredObjectIsNullException();
-        }else {
-            logger.info("Creating one Person!");
+        }
+        else {
             var entity = parseObject(person, Person.class);
             var dto = parseObject(repository.save(entity), PersonDTOV1.class);
             addHateoasLinks(dto);
@@ -60,7 +61,9 @@ public class PersonServices {
         logger.info("Updating one Person!");
         if(person == null){
             throw new RequiredObjectIsNullException();
-        }else{
+        } else if (person.getId() == 0 || person.getId() == null) {
+            throw new RequiredObjectIsNullException("Id is Required");
+        } else{
             Person entity = repository.findById(person.getId())
                     .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
             entity.setFirstName(person.getFirstName());
@@ -75,9 +78,15 @@ public class PersonServices {
 
     public void delete(Long id){
         logger.info("Deleting one Person!");
-        Person entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
-        repository.delete(entity);
+
+        if (id == null || id == 0) {
+            throw new RequiredObjectIsNullException("Id is Required");
+        }
+        else {
+            Person entity = repository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+            repository.delete(entity);
+        }
     }
 
     private void addHateoasLinks(PersonDTOV1 dto) {
