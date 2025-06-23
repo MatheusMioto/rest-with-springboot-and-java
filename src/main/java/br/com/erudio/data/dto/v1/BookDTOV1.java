@@ -3,7 +3,6 @@ package br.com.erudio.data.dto.v1;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
