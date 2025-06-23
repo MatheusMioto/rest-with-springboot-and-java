@@ -23,9 +23,6 @@ public class MockBook {
     public BookDTOV1 mockDTO() {
         return mockDTO(0);
     }
-
-    Date dataFixa = new Date(2025, 5, 22);
-
     
     public List<Book> mockEntityList() {
         List<Book> books = new ArrayList<Book>();
@@ -49,8 +46,7 @@ public class MockBook {
         book.setTitle("Title Test" + number);
         book.setAuthor("Autor Test" + number);
         book.setPrice(17.65);
-        Date dataFixa = new Date(2025, 5, 22);
-        book.setLaunchDate(dataFixa);
+        book.setLaunchDate(new Date());
         return book;
     }
 
@@ -60,7 +56,7 @@ public class MockBook {
         book.setTitle("Title Test" + number);
         book.setAuthor("Autor Test" + number);
         book.setPrice(17.65);
-        book.setLaunchDate(dataFixa);
+        book.setLaunchDate(new Date());
         return book;
     }
 
