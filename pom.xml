@@ -103,7 +103,7 @@
 				<configuration>
 					<url>jdbc:mysql://localhost:3306/rest_with_spring_boot_erudio?useTimezone=true&amp;serverTimezone=UTC</url>
 					<user>root</user>
-					<password>admin123</password>
+					<password>Gestao!2024</password>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -122,5 +122,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
