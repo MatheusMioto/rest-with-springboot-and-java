@@ -87,7 +87,6 @@ class BookServicesTest {
 
     @Test
     void create() {
-        Date dataFixa = new Date(2025, 5, 22);
         Book book = input.mockEntity(1);
         Book persisted = book;
         persisted.setId(1L);
@@ -156,7 +155,6 @@ class BookServicesTest {
         when(repository.findById(1L)).thenReturn(Optional.of(book));
         when(repository.save(book)).thenReturn(persisted);
 
-        Date dataFixa = new Date(2025, 5, 22);
         var result = service.update(dto);
 
         assertNotNull(result);
@@ -230,7 +228,6 @@ class BookServicesTest {
         assertEquals(14, books.size());
 
         var BookOne = books.get(1);
-        Date dataFixa = new Date(2025, 5, 22);
         assertNotNull(BookOne);
         assertNotNull(BookOne.getId());
         assertNotNull(BookOne.getLinks());
