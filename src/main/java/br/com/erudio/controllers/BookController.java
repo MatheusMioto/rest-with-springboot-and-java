@@ -2,14 +2,8 @@ package br.com.erudio.controllers;
 
 import br.com.erudio.controllers.docs.BookControllerDocs;
 import br.com.erudio.data.dto.v1.BookDTOV1;
-import br.com.erudio.data.dto.v1.PersonDTOV1;
-import br.com.erudio.services.BookServices;
+import br.com.erudio.unittests.services.BookServices;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

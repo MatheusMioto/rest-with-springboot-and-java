@@ -1,4 +1,4 @@
-package br.com.erudio.unitetests.mapper.mocks;
+package br.com.erudio.unittests.mapper.mocks;
 
 import br.com.erudio.data.dto.v1.BookDTOV1;
 import br.com.erudio.data.dto.v1.PersonDTOV1;
