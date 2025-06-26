@@ -10,6 +10,7 @@ import  static br.com.erudio.mapper.ObjectMapper.parseObject;
 
 import br.com.erudio.model.Person;
 import br.com.erudio.repository.PersonRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +71,27 @@ public class PersonServices {
             entity.setLastName(person.getLastName());
             entity.setAddress(person.getAddress());
             entity.setGender(person.getGender());
+
             var dto = parseObject(repository.save(entity), PersonDTOV1.class);
+            addHateoasLinks(dto);
+            return dto;
+        }
+    }
+
+    @Transactional
+    public PersonDTOV1 disablePerson(Long id){
+        logger.info("Disable one Person!");
+
+        if (id == null || id == 0) {
+            throw new RequiredObjectIsNullException("Id is Required");
+        }
+        else {
+            repository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+            repository.disablePerson(id);
+
+            var entity = repository.findById(id).get();
+            var dto = parseObject(entity, PersonDTOV1.class);
             addHateoasLinks(dto);
             return dto;
         }
@@ -86,6 +107,7 @@ public class PersonServices {
             Person entity = repository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
             repository.delete(entity);
+
         }
     }
 
@@ -94,6 +116,7 @@ public class PersonServices {
         dto.add(linkTo(methodOn(PersonController.class).findAll()).withRel("findALL").withType("GET"));
         dto.add(linkTo(methodOn(PersonController.class).create(dto)).withRel("create").withType("POST"));
         dto.add(linkTo(methodOn(PersonController.class).update(dto)).withRel("update").withType("PUT"));
+        dto.add(linkTo(methodOn(PersonController.class).disablePerson(dto.getId())).withRel("disable").withType("PATH"));
         dto.add(linkTo(methodOn(PersonController.class).delete(dto.getId())).withRel("delete").withType("DELETE"));
     }
 }
