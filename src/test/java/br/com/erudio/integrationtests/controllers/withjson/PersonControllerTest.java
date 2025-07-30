@@ -44,8 +44,8 @@ class PersonControllerTest  extends AbstractIntegrationTest{
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_LOCAL)
                 .setBasePath("/api/person/v1")
                 .setPort(TestConfigs.SERVER_PORT)
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                    .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                    .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .build();
 
         var content = given(specification)
