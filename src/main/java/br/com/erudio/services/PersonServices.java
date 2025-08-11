@@ -107,7 +107,6 @@ public class PersonServices {
             Person entity = repository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
             repository.delete(entity);
-
         }
     }
 

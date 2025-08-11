@@ -88,22 +88,6 @@ public interface PersonControllerDocs {
     )
     PersonDTOV1 update(@RequestBody PersonDTOV1 person);
 
-    @Operation(summary = "Delete a Person",
-            description = "Delete a specific Person by your ID",
-            tags = "People",
-            responses = {
-                    @ApiResponse(
-                            description = "No content",
-                            responseCode = "204"
-                    ),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
-            }
-    )
-    ResponseEntity<?> delete(@PathVariable("id") Long id);
-
     @Operation(summary = "Disable a Person",
             description = "Disable a specific Person by your ID",
             tags = "People",
@@ -121,4 +105,20 @@ public interface PersonControllerDocs {
             }
     )
     PersonDTOV1 disablePerson(@PathVariable("id") Long id);
+
+    @Operation(summary = "Delete a Person",
+            description = "Delete a specific Person by your ID",
+            tags = "People",
+            responses = {
+                    @ApiResponse(
+                            description = "No content",
+                            responseCode = "204"
+                    ),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
+            }
+    )
+    ResponseEntity<?> delete(@PathVariable("id") Long id);
 }
