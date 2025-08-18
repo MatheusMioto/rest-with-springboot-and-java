@@ -5,11 +5,12 @@ import br.com.erudio.data.dto.v1.PersonDTOV1;
 import br.com.erudio.services.PersonServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/person/v1")
@@ -23,14 +24,15 @@ public class PersonController implements PersonControllerDocs {
             produces = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
-                    MediaType.APPLICATION_YAML_VALUE
-            }
-    )
+                    MediaType.APPLICATION_YAML_VALUE })
     @Override
-    public List<PersonDTOV1> findAll() {
-        return service.findAll();
+    public ResponseEntity<Page<PersonDTOV1>> findAll(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "12") Integer size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok( service.findAll(pageable));
     }
-
     @GetMapping(value = "/{id}",
             produces = {
                     MediaType.APPLICATION_JSON_VALUE,
