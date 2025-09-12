@@ -34,6 +34,7 @@ public class PersonServices {
         logger.info("Finding all People!");
 
         var people = repository.findAll(pageable);
+
         var peopleWithLinks = people.map(person -> {
             var dto = parseObject(person, PersonDTOV1.class);
             addHateoasLinks(dto);
