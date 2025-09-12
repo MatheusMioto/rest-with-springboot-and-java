@@ -7,11 +7,12 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface BookControllerDocs {
     @Operation(summary = "Find All Books",
@@ -34,7 +35,12 @@ public interface BookControllerDocs {
                     @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
             }
     )
-    List<BookDTOV1> findAll();
+    ResponseEntity<PagedModel<EntityModel<BookDTOV1>>> findAll(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "12") Integer size,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction
+    );
+
 
     @Operation(summary = "Find a Book",
             description = "Find a specific Book by your ID",

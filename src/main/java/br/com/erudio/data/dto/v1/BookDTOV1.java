@@ -1,11 +1,13 @@
 package br.com.erudio.data.dto.v1;
 
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@Relation(collectionRelation = "books")
 public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Serializable {
 
     private Long id;
@@ -18,9 +20,7 @@ public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Seriali
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
     public String getAuthor() {
         return author;
@@ -38,17 +38,13 @@ public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Seriali
         this.launchDate = launchDate;
     }
 
-    public Double getPrice() {
-        return price;
-    }
+    public Double getPrice() { return price; }
 
     public void setPrice(Double price) {
         this.price = price;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
     public void setTitle(String title) {
         this.title = title;

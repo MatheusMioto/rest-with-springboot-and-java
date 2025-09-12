@@ -48,7 +48,6 @@ public class PersonServices {
             addHateoasLinks(dto);
             return dto;
         });
-
         Link findAllLink = WebMvcLinkBuilder.linkTo(
                 WebMvcLinkBuilder.methodOn(PersonController.class)
                         .findAll(
