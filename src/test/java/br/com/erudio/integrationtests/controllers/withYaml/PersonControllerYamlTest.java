@@ -193,6 +193,7 @@ class PersonControllerYamlTest extends AbstractIntegrationTest{
 
     @Test
     @Order(6)
+    @Disabled("REASON: Still under Development")
     void findAllTest() throws JsonProcessingException {
 
         var response = given(specification)

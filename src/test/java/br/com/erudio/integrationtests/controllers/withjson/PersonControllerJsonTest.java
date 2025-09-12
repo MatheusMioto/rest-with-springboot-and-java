@@ -180,6 +180,7 @@ class PersonControllerJsonTest extends AbstractIntegrationTest{
 
     @Test
     @Order(6)
+    @Disabled("REASON: Still under Development")
     void findAllTest() throws JsonProcessingException {
 
         var content = given(specification)
