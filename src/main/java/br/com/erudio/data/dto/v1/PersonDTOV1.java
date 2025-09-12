@@ -1,10 +1,12 @@
 package br.com.erudio.data.dto.v1;
 
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Relation(collectionRelation = "people")
 public class PersonDTOV1 extends RepresentationModel<PersonDTOV1> implements Serializable {
 
     private static final long serialVersionUID = 1L;
