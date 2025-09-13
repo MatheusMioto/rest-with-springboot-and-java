@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.erudio.model.Person;
 
-public class ObjectMapperTests {
+public class PersonObjectMapperTests {
     MockPerson inputObject;
 
     @BeforeEach

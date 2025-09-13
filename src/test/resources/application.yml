@@ -14,10 +14,6 @@ spring:
       hibernate:
     show-sql: false
     open-in-view: false
-logging:
-  level:
-    root: WARN
-    br.com.erudio: DEBUG
 
 spring-doc:
   paths-to-math: /api/**/v1/**

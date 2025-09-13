@@ -3,6 +3,7 @@ package br.com.erudio.integrationtests.controllers.withYaml;
 import br.com.erudio.config.TestConfigs;
 import br.com.erudio.integrationtests.controllers.withYaml.mapper.YAMLMapper;
 import br.com.erudio.integrationtests.dto.PersonDTOV1;
+import br.com.erudio.integrationtests.dto.wrappers.xml.PagedModelPerson;
 import br.com.erudio.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.builder.RequestSpecBuilder;
@@ -193,45 +194,43 @@ class PersonControllerYamlTest extends AbstractIntegrationTest{
 
     @Test
     @Order(6)
-    @Disabled("REASON: Still under Development")
     void findAllTest() throws JsonProcessingException {
 
         var response = given(specification)
                 .accept(MediaType.APPLICATION_YAML_VALUE)
+                .queryParams("page", 3, "size", 12, "direction", "asc")
                 .when()
-                    .get()
+                .get()
                 .then()
-                    .statusCode(200)
-                    .contentType(MediaType.APPLICATION_YAML_VALUE)
+                .statusCode(200)
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
                 .extract()
-                    .body()
-                    .as(PersonDTOV1[].class, objectMapper);
+                .body()
+                .as(PagedModelPerson.class, objectMapper);
 
-        List<PersonDTOV1> people = Arrays.asList(response);
+        List<PersonDTOV1> people = response.getContent();
 
         PersonDTOV1 personOne = people.get(0);
-        person = personOne;
 
         assertNotNull(personOne.getId());
         assertTrue(personOne.getId() > 0);
 
-        assertEquals("Ayrton", personOne.getFirstName());
-        assertEquals("Senna", personOne.getLastName());
-        assertEquals("São Paulo - Brasil", personOne.getAddress());
+        assertEquals("Allin", personOne.getFirstName());
+        assertEquals("Emmot", personOne.getLastName());
+        assertEquals("7913 Lindbergh Way", personOne.getAddress());
         assertEquals("Male", personOne.getGender());
-        assertTrue(personOne.getEnabled());
+        assertFalse(personOne.getEnabled());
 
-        PersonDTOV1 personTwo = people.get(1);
-        person = personTwo;
+        PersonDTOV1 personFour = people.get(4);
 
-        assertNotNull(personTwo.getId());
-        assertTrue(personTwo.getId() > 0);
+        assertNotNull(personFour.getId());
+        assertTrue(personFour.getId() > 0);
 
-        assertEquals("Matheus", personTwo.getFirstName());
-        assertEquals("Mioto de Oliveira", personTwo.getLastName());
-        assertEquals("Ariquemes - Brasil", personTwo.getAddress());
-        assertEquals("Male", personTwo.getGender());
-        assertTrue(personTwo.getEnabled());
+        assertEquals("Alonso", personFour.getFirstName());
+        assertEquals("Luchelli", personFour.getLastName());
+        assertEquals("9 Doe Crossing Avenue", personFour.getAddress());
+        assertEquals("Male", personFour.getGender());
+        assertFalse(personFour.getEnabled());
     }
 
     private void mockPerson() {
