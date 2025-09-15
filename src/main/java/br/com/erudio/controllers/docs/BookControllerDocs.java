@@ -75,7 +75,7 @@ public interface BookControllerDocs {
                     @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
             }
     )
-    BookDTOV1 create(@RequestBody BookDTOV1 person);
+    BookDTOV1 create(@RequestBody BookDTOV1 book);
 
     @Operation(summary = "Update a Book's information",
             description = "Find a specific Book by your ID",
@@ -93,7 +93,7 @@ public interface BookControllerDocs {
                     @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
             }
     )
-    BookDTOV1 update(@RequestBody BookDTOV1 person);
+    BookDTOV1 update(@RequestBody BookDTOV1 book);
 
     @Operation(summary = "Delete a Book",
             description = "Delete a specific Book by your ID",

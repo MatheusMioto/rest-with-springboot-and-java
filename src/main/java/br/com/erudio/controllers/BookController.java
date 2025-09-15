@@ -64,8 +64,8 @@ public class BookController implements BookControllerDocs {
             }
     )
     @Override
-    public BookDTOV1 create(@RequestBody BookDTOV1 person) {
-        return service.create(person);
+    public BookDTOV1 create(@RequestBody BookDTOV1 book) {
+        return service.create(book);
     }
 
     @PutMapping(
@@ -81,9 +81,10 @@ public class BookController implements BookControllerDocs {
             }
     )
     @Override
-    public BookDTOV1 update(@RequestBody BookDTOV1 person) {
-        return service.update(person);
+    public BookDTOV1 update(@RequestBody BookDTOV1 book) {
+        return service.update(book);
     }
+
 
     @DeleteMapping(value = "/{id}")
     @Override

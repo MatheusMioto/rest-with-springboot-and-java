@@ -1,4 +1,4 @@
-package br.com.erudio.integrationtests.dto.wrappers.xml;
+package br.com.erudio.integrationtests.dto.wrappers.xmlandyaml;
 
 import br.com.erudio.integrationtests.dto.PersonDTOV1;
 import jakarta.xml.bind.annotation.XmlElement;

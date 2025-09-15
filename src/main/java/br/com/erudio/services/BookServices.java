@@ -82,11 +82,7 @@ public class BookServices {
         }else{
             Book entity = repository.findById(book.getId())
                     .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
-            entity.setAuthor(book.getAuthor());
-            entity.setLaunchDate(book.getLaunchDate());
-            entity.setPrice(book.getPrice());
-            entity.setAuthor(book.getAuthor());
-            var dto = parseObject(repository.save(entity), BookDTOV1.class);
+            var dto = parseObject(repository.save(book.converterToUpdate(entity)), BookDTOV1.class);
             addHateoasLinks(dto);
             return dto;
         }

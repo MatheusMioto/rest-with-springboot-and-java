@@ -1,15 +1,9 @@
 package br.com.erudio.unittests.mapper.mocks;
 
 import br.com.erudio.data.dto.v1.BookDTOV1;
-import br.com.erudio.data.dto.v1.PersonDTOV1;
 import br.com.erudio.model.Book;
-import br.com.erudio.model.Person;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 

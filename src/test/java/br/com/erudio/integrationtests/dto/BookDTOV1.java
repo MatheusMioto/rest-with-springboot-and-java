@@ -1,15 +1,13 @@
-package br.com.erudio.data.dto.v1;
+package br.com.erudio.integrationtests.dto;
 
-import br.com.erudio.model.Book;
-import org.springframework.hateoas.RepresentationModel;
-import org.springframework.hateoas.server.core.Relation;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-@Relation(collectionRelation = "books")
-public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Serializable {
+@XmlRootElement
+public class BookDTOV1 implements Serializable {
 
     private Long id;
     private String author;
@@ -17,15 +15,7 @@ public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Seriali
     private Double price;
     private String title;
 
-    public Book converterToUpdate(Book book){
-        book.setAuthor(this.getAuthor());
-        book.setLaunchDate(this.getLaunchDate());
-        book.setPrice(this.getPrice());
-        book.setTitle(this.getTitle());
-        return book;
-    }
-
-    public BookDTOV1(){}
+    public BookDTOV1() {}
 
     public Long getId() {
         return id;
@@ -69,13 +59,16 @@ public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Seriali
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof BookDTOV1 that)) return false;
+        if (!(o instanceof BookDTOV1 bookDTOV1)) return false;
         if (!super.equals(o)) return false;
-        return Objects.equals(id, that.id) && Objects.equals(author, that.author) && Objects.equals(launchDate, that.launchDate) && Objects.equals(price, that.price) && Objects.equals(title, that.title);
+        return Objects.equals(getId(), bookDTOV1.getId()) && Objects.equals(getAuthor(), bookDTOV1.getAuthor()) && Objects.equals(getLaunchDate(), bookDTOV1.getLaunchDate()) && Objects.equals(getPrice(), bookDTOV1.getPrice()) && Objects.equals(getTitle(), bookDTOV1.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, author, launchDate, price, title);
+        return Objects.hash(super.hashCode(), getId(), getAuthor(), getLaunchDate(), getPrice(), getTitle());
     }
 }
+
+
+

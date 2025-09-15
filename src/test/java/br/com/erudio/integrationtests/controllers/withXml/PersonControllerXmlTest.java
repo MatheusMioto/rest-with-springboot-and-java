@@ -2,10 +2,9 @@ package br.com.erudio.integrationtests.controllers.withXml;
 
 import br.com.erudio.config.TestConfigs;
 import br.com.erudio.integrationtests.dto.PersonDTOV1;
-import br.com.erudio.integrationtests.dto.wrappers.xml.PagedModelPerson;
+import br.com.erudio.integrationtests.dto.wrappers.xmlandyaml.PagedModelPerson;
 import br.com.erudio.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.restassured.builder.RequestSpecBuilder;
@@ -82,6 +81,7 @@ class PersonControllerXmlTest extends AbstractIntegrationTest{
     @Test
     @Order(2)
     void updateTest() throws JsonProcessingException {
+
         person.setLastName("Mioto de Oliveira");
 
         var content = given(specification)
@@ -188,7 +188,7 @@ class PersonControllerXmlTest extends AbstractIntegrationTest{
 
         var content = given(specification)
                 .accept(MediaType.APPLICATION_XML_VALUE)
-                .queryParams("page", 3, "size", 12, "direction", "asc")
+                .queryParams("page", 0, "size", 12, "direction", "asc")
                 .when()
                 .get()
                 .then()
@@ -206,9 +206,9 @@ class PersonControllerXmlTest extends AbstractIntegrationTest{
         assertNotNull(personOne.getId());
         assertTrue(personOne.getId() > 0);
 
-        assertEquals("Allin", personOne.getFirstName());
-        assertEquals("Emmot", personOne.getLastName());
-        assertEquals("7913 Lindbergh Way", personOne.getAddress());
+        assertEquals("Aaron", personOne.getFirstName());
+        assertEquals("Oddy", personOne.getLastName());
+        assertEquals("01 Colorado Court", personOne.getAddress());
         assertEquals("Male", personOne.getGender());
         assertFalse(personOne.getEnabled());
 
@@ -217,11 +217,11 @@ class PersonControllerXmlTest extends AbstractIntegrationTest{
         assertNotNull(personFour.getId());
         assertTrue(personFour.getId() > 0);
 
-        assertEquals("Alonso", personFour.getFirstName());
-        assertEquals("Luchelli", personFour.getLastName());
-        assertEquals("9 Doe Crossing Avenue", personFour.getAddress());
+        assertEquals("Abran", personFour.getFirstName());
+        assertEquals("Longworthy", personFour.getLastName());
+        assertEquals("8 Darwin Alley", personFour.getAddress());
         assertEquals("Male", personFour.getGender());
-        assertFalse(personFour.getEnabled());
+        assertTrue(personFour.getEnabled());
     }
 
     private void mockPerson() {

@@ -3,7 +3,7 @@ package br.com.erudio.integrationtests.controllers.withYaml;
 import br.com.erudio.config.TestConfigs;
 import br.com.erudio.integrationtests.controllers.withYaml.mapper.YAMLMapper;
 import br.com.erudio.integrationtests.dto.PersonDTOV1;
-import br.com.erudio.integrationtests.dto.wrappers.xml.PagedModelPerson;
+import br.com.erudio.integrationtests.dto.wrappers.xmlandyaml.PagedModelPerson;
 import br.com.erudio.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.builder.RequestSpecBuilder;
@@ -17,7 +17,6 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
