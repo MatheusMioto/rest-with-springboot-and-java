@@ -53,5 +53,4 @@ public class MockBook {
         book.setLaunchDate(new Date());
         return book;
     }
-
 }
