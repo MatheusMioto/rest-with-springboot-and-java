@@ -2,9 +2,7 @@ package br.com.erudio.integrationtests.controllers.withXml;
 
 import br.com.erudio.config.TestConfigs;
 import br.com.erudio.integrationtests.dto.BookDTOV1;
-import br.com.erudio.integrationtests.dto.PersonDTOV1;
 import br.com.erudio.integrationtests.dto.wrappers.xmlandyaml.PagedModelBook;
-import br.com.erudio.integrationtests.dto.wrappers.xmlandyaml.PagedModelPerson;
 import br.com.erudio.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -19,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 
 import java.util.Date;
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;

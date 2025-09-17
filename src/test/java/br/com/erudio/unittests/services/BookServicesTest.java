@@ -1,6 +1,6 @@
 package br.com.erudio.unittests.services;
 
-import br.com.erudio.data.dto.v1.BookDTOV1;
+import br.com.erudio.data.dto.v1.BookDTO;
 import br.com.erudio.exception.RequiredObjectIsNullException;
 import br.com.erudio.model.Book;
 import br.com.erudio.repository.BookRepository;
@@ -90,7 +90,7 @@ class BookServicesTest {
     @Test
     void create() {
 
-        BookDTOV1 dto = input.mockDTO(1);
+        BookDTO dto = input.mockDTO(1);
 
         when(repository.save(any(Book.class))).thenReturn(input.mockEntity(1));
 
@@ -150,7 +150,7 @@ class BookServicesTest {
         Book book = input.mockEntity(1);
         Book persisted = book;
         persisted.setId(1L);
-        BookDTOV1 dto = input.mockDTO(1);
+        BookDTO dto = input.mockDTO(1);
 
         when(repository.findById(1L)).thenReturn(Optional.of(book));
         when(repository.save(book)).thenReturn(persisted);
@@ -223,7 +223,7 @@ class BookServicesTest {
     void findAll() {
         List<Book> list = input.mockEntityList();
         when(repository.findAll()).thenReturn(list);
-        List<BookDTOV1> books = new ArrayList<>();//service.findAll();
+        List<BookDTO> books = new ArrayList<>();//service.findAll();
 
         assertNotNull(books);
         assertEquals(14, books.size());

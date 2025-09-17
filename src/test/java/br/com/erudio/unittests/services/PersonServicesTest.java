@@ -1,6 +1,6 @@
 package br.com.erudio.unittests.services;
 
-import br.com.erudio.data.dto.v1.PersonDTOV1;
+import br.com.erudio.data.dto.v1.PersonDTO;
 import br.com.erudio.exception.RequiredObjectIsNullException;
 import br.com.erudio.model.Person;
 import br.com.erudio.repository.PersonRepository;
@@ -93,7 +93,7 @@ class PersonServicesTest {
         Person person = input.mockEntity(1);
         Person persisted = person;
         persisted.setId(1L);
-        PersonDTOV1 dto = input.mockDTO(1);
+        PersonDTO dto = input.mockDTO(1);
         when(repository.save(person)).thenReturn(persisted);
         var result = service.create(dto);
 
@@ -151,7 +151,7 @@ class PersonServicesTest {
         Person person = input.mockEntity(1);
         Person persisted = person;
         persisted.setId(1L);
-        PersonDTOV1 dto = input.mockDTO(1);
+        PersonDTO dto = input.mockDTO(1);
         when(repository.findById(1L)).thenReturn(Optional.of(person));
         when(repository.save(person)).thenReturn(persisted);
         var result = service.update(dto);
@@ -222,7 +222,7 @@ class PersonServicesTest {
     void findAll() {
         List<Person> list = input.mockEntityList();
         when(repository.findAll()).thenReturn(list);
-        List<PersonDTOV1> people = new ArrayList<>();//service.findAll(pageable);
+        List<PersonDTO> people = new ArrayList<>();//service.findAll(pageable);
 
         assertNotNull(people);
         assertEquals(14, people.size());

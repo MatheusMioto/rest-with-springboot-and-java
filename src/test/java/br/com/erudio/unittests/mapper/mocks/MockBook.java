@@ -1,6 +1,6 @@
 package br.com.erudio.unittests.mapper.mocks;
 
-import br.com.erudio.data.dto.v1.BookDTOV1;
+import br.com.erudio.data.dto.v1.BookDTO;
 import br.com.erudio.model.Book;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class MockBook {
         return mockEntity(0);
     }
     
-    public BookDTOV1 mockDTO() {
+    public BookDTO mockDTO() {
         return mockDTO(0);
     }
     
@@ -26,8 +26,8 @@ public class MockBook {
         return books;
     }
 
-    public List<BookDTOV1> mockDTOList() {
-        List<BookDTOV1> books = new ArrayList<>();
+    public List<BookDTO> mockDTOList() {
+        List<BookDTO> books = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
             books.add(mockDTO(i));
         }
@@ -44,8 +44,8 @@ public class MockBook {
         return book;
     }
 
-    public BookDTOV1 mockDTO(Integer number) {
-        BookDTOV1 book = new BookDTOV1();
+    public BookDTO mockDTO(Integer number) {
+        BookDTO book = new BookDTO();
         book.setId(number.longValue());
         book.setTitle("Title Test" + number);
         book.setAuthor("Autor Test" + number);

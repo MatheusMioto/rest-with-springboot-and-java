@@ -1,7 +1,7 @@
 package br.com.erudio.controllers;
 
 import br.com.erudio.controllers.docs.PersonControllerDocs;
-import br.com.erudio.data.dto.v1.PersonDTOV1;
+import br.com.erudio.data.dto.v1.PersonDTO;
 import br.com.erudio.services.PersonServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class PersonController implements PersonControllerDocs {
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_YAML_VALUE })
     @Override
-    public ResponseEntity<PagedModel<EntityModel<PersonDTOV1>>> findAll(
+    public ResponseEntity<PagedModel<EntityModel<PersonDTO>>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "12") Integer size,
             @RequestParam(value = "direction", defaultValue = "asc") String direction
@@ -46,7 +46,7 @@ public class PersonController implements PersonControllerDocs {
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_YAML_VALUE })
     @Override
-    public ResponseEntity<PagedModel<EntityModel<PersonDTOV1>>> findByName(
+    public ResponseEntity<PagedModel<EntityModel<PersonDTO>>> findByName(
             @PathVariable("firstName") String firstName,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "12") Integer size,
@@ -64,7 +64,7 @@ public class PersonController implements PersonControllerDocs {
                     MediaType.APPLICATION_YAML_VALUE
             })
     @Override
-    public PersonDTOV1 findByeId(@PathVariable("id") Long id) {
+    public PersonDTO findByeId(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
@@ -81,7 +81,7 @@ public class PersonController implements PersonControllerDocs {
             }
     )
     @Override
-    public PersonDTOV1 create(@RequestBody PersonDTOV1 person) {
+    public PersonDTO create(@RequestBody PersonDTO person) {
         return service.create(person);
     }
 
@@ -98,7 +98,7 @@ public class PersonController implements PersonControllerDocs {
             }
     )
     @Override
-    public PersonDTOV1 update(@RequestBody PersonDTOV1 person) {
+    public PersonDTO update(@RequestBody PersonDTO person) {
         return service.update(person);
     }
 
@@ -116,7 +116,7 @@ public class PersonController implements PersonControllerDocs {
                     MediaType.APPLICATION_YAML_VALUE
             })
     @Override
-    public PersonDTOV1 disablePerson(@PathVariable("id") Long id) {
+    public PersonDTO disablePerson(@PathVariable("id") Long id) {
         return service.disablePerson(id);
     }
 }

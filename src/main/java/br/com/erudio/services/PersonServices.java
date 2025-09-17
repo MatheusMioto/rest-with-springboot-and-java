@@ -2,7 +2,7 @@ package br.com.erudio.services;
 
 
 import br.com.erudio.controllers.PersonController;
-import br.com.erudio.data.dto.v1.PersonDTOV1;
+import br.com.erudio.data.dto.v1.PersonDTO;
 import br.com.erudio.exception.RequiredObjectIsNullException;
 import br.com.erudio.exception.ResourceNotFoundException;
 
@@ -34,15 +34,15 @@ public class PersonServices {
     PersonRepository repository;
 
     @Autowired
-    PagedResourcesAssembler<PersonDTOV1> assembler;
+    PagedResourcesAssembler<PersonDTO> assembler;
 
-    public PagedModel<EntityModel<PersonDTOV1>> findAll(Pageable pageable){
+    public PagedModel<EntityModel<PersonDTO>> findAll(Pageable pageable){
         logger.info("Finding all People!");
 
         var people = repository.findAll(pageable);
 
         var peopleWithLinks = people.map(person -> {
-            var dto = parseObject(person, PersonDTOV1.class);
+            var dto = parseObject(person, PersonDTO.class);
             addHateoasLinks(dto);
             return dto;
         });
@@ -56,13 +56,13 @@ public class PersonServices {
         return assembler.toModel(peopleWithLinks, findAllLink);
     }
 
-    public PagedModel<EntityModel<PersonDTOV1>> findByName(String firstName, Pageable pageable){
+    public PagedModel<EntityModel<PersonDTO>> findByName(String firstName, Pageable pageable){
         logger.info("Finding People by Name!");
 
         var people = repository.findPeopleByName(firstName, pageable);
 
         var peopleWithLinks = people.map(person -> {
-            var dto = parseObject(person, PersonDTOV1.class);
+            var dto = parseObject(person, PersonDTO.class);
             addHateoasLinks(dto);
             return dto;
         });
@@ -76,29 +76,29 @@ public class PersonServices {
         return assembler.toModel(peopleWithLinks, findAllLink);
     }
 
-    public PersonDTOV1 findById(Long id){
+    public PersonDTO findById(Long id){
         logger.info("Finding one Person!");
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
-        var dto = parseObject(entity, PersonDTOV1.class);
+        var dto = parseObject(entity, PersonDTO.class);
         addHateoasLinks(dto);
         return dto;
     }
 
-    public PersonDTOV1 create(PersonDTOV1 person){
+    public PersonDTO create(PersonDTO person){
         logger.info("Creating one Person!");
         if (person == null) {
             throw new RequiredObjectIsNullException();
         }
         else {
             var entity = parseObject(person, Person.class);
-            var dto = parseObject(repository.save(entity), PersonDTOV1.class);
+            var dto = parseObject(repository.save(entity), PersonDTO.class);
             addHateoasLinks(dto);
             return dto;
         }
     }
 
-    public PersonDTOV1 update(PersonDTOV1 person){
+    public PersonDTO update(PersonDTO person){
         logger.info("Updating one Person!");
         if(person == null){
             throw new RequiredObjectIsNullException();
@@ -112,14 +112,14 @@ public class PersonServices {
             entity.setAddress(person.getAddress());
             entity.setGender(person.getGender());
 
-            var dto = parseObject(repository.save(entity), PersonDTOV1.class);
+            var dto = parseObject(repository.save(entity), PersonDTO.class);
             addHateoasLinks(dto);
             return dto;
         }
     }
 
     @Transactional
-    public PersonDTOV1 disablePerson(Long id){
+    public PersonDTO disablePerson(Long id){
         logger.info("Disable one Person!");
 
         if (id == null || id == 0) {
@@ -131,7 +131,7 @@ public class PersonServices {
             repository.disablePerson(id);
 
             var entity = repository.findById(id).get();
-            var dto = parseObject(entity, PersonDTOV1.class);
+            var dto = parseObject(entity, PersonDTO.class);
             addHateoasLinks(dto);
             return dto;
         }
@@ -150,7 +150,7 @@ public class PersonServices {
         }
     }
 
-    private void addHateoasLinks(PersonDTOV1 dto) {
+    private void addHateoasLinks(PersonDTO dto) {
         dto.add(linkTo(methodOn(PersonController.class).findByeId(dto.getId())).withSelfRel().withType("GET"));
         dto.add(linkTo(methodOn(PersonController.class).findAll(1, 12, "asc")).withRel("findALL").withType("GET"));
         dto.add(linkTo(methodOn(PersonController.class).create(dto)).withRel("create").withType("POST"));

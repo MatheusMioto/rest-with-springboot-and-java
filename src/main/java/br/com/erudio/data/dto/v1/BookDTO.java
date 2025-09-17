@@ -9,7 +9,9 @@ import java.util.Date;
 import java.util.Objects;
 
 @Relation(collectionRelation = "books")
-public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Serializable {
+public class BookDTO extends RepresentationModel<BookDTO> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String author;
@@ -25,7 +27,7 @@ public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Seriali
         return book;
     }
 
-    public BookDTOV1(){}
+    public BookDTO(){}
 
     public Long getId() {
         return id;
@@ -69,7 +71,7 @@ public class BookDTOV1 extends RepresentationModel<BookDTOV1> implements Seriali
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof BookDTOV1 that)) return false;
+        if (!(o instanceof BookDTO that)) return false;
         if (!super.equals(o)) return false;
         return Objects.equals(id, that.id) && Objects.equals(author, that.author) && Objects.equals(launchDate, that.launchDate) && Objects.equals(price, that.price) && Objects.equals(title, that.title);
     }

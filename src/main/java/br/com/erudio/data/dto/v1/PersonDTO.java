@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Relation(collectionRelation = "people")
-public class PersonDTOV1 extends RepresentationModel<PersonDTOV1> implements Serializable {
+public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class PersonDTOV1 extends RepresentationModel<PersonDTOV1> implements Ser
     private String gender;
     private Boolean enabled;
 
-    public PersonDTOV1() {}
+    public PersonDTO() {}
 
     public Long getId() {
         return id;
@@ -70,7 +70,7 @@ public class PersonDTOV1 extends RepresentationModel<PersonDTOV1> implements Ser
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof PersonDTOV1 that)) return false;
+        if (!(o instanceof PersonDTO that)) return false;
         if (!super.equals(o)) return false;
         return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender()) && Objects.equals(getEnabled(), that.getEnabled());
     }
