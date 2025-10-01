@@ -1,6 +1,6 @@
 package br.com.erudio.controllers.docs;
 
-import br.com.erudio.data.dto.v1.BookDTO;
+import br.com.erudio.data.dto.BookDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

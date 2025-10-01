@@ -1,4 +1,4 @@
-package br.com.erudio.data.dto.v1;
+package br.com.erudio.data.dto;
 
 import br.com.erudio.model.Book;
 import org.springframework.hateoas.RepresentationModel;

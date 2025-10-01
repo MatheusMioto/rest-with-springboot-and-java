@@ -1,6 +1,6 @@
 package br.com.erudio.file.importer.contract;
 
-import br.com.erudio.data.dto.v1.PersonDTO;
+import br.com.erudio.data.dto.PersonDTO;
 
 import java.io.InputStream;
 import java.util.List;

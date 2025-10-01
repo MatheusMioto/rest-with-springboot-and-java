@@ -1,7 +1,7 @@
 package br.com.erudio.services;
 
 import br.com.erudio.controllers.PersonController;
-import br.com.erudio.data.dto.v1.PersonDTO;
+import br.com.erudio.data.dto.PersonDTO;
 import br.com.erudio.exception.BadRequestException;
 import br.com.erudio.exception.FileStorageException;
 import br.com.erudio.exception.RequiredObjectIsNullException;
@@ -33,7 +33,6 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;

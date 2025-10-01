@@ -1,7 +1,12 @@
 cors:
   originPatterns: http://localhost:8080,http://localhost:3000
 file:
-  upload-dir: /Projetos/rest-with-springboot-and-java-erudio/UploadDir
+  upload-dir: /Code/UploadDir
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-lenght: 3600000
 spring:
   application:
     name: rest-with-spring-boot-and-java-erudio
@@ -18,12 +23,20 @@ spring:
     show-sql: false
     open-in-view: false
   servlet:
-   multipart:
-     enabled: true
-     file-size-threshold: 2KB
-     max-file-size: 200MB
-     max-request-size: 215MB
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+logging:
+  level:
+    root: INFO
+    # net.sf.jasperreports.engine.*: TRACE
+    # root: WARN
+    # br.com.erudio: DEBUG
 spring-doc:
-  paths-to-math: /api/**/v1/**
+  paths-to-match:
+    - /auth/**
+    - /api/**/v1/**
   swagger-ui:
     use-root-path: true

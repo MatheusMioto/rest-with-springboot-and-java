@@ -1,8 +1,7 @@
 package br.com.erudio.file.importer.impl;
 
-import br.com.erudio.data.dto.v1.PersonDTO;
+import br.com.erudio.data.dto.PersonDTO;
 import br.com.erudio.file.importer.contract.FileImporter;
-import br.com.erudio.file.importer.factory.FileImporterFactory;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

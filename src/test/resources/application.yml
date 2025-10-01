@@ -1,9 +1,17 @@
 server:
   port: 8888
 cors:
-  originPatterns: http://localhost:8080,http://localhost:3000
+  originPatterns: http://localhost:8080,http://localhost:3000,https://www.erudio.com.br
 file:
-  upload-dir: /Projetos/rest-with-springboot-and-java-erudio/UploadDir
+  upload-dir: /Code/UploadDir
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-lenght: 3600000
+email:
+  subject: "Default Subject"
+  message: "Default Message"
 spring:
   application:
     name: rest-with-spring-boot-and-java-erudio
@@ -21,8 +29,15 @@ spring:
       enabled: true
       file-size-threshold: 2KB
       max-file-size: 200MB
-      max-request-size: 215MB
+      max-request-size: 215 MB
+logging:
+  level:
+    root: INFO
+    # root: WARN
+    # br.com.erudio: DEBUG
 spring-doc:
-  paths-to-math: /api/**/v1/**
+  paths-to-match:
+    - /auth/**
+    - /api/**/v1/**
   swagger-ui:
     use-root-path: true

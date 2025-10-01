@@ -1,6 +1,6 @@
 package br.com.erudio.file.exporter.impl;
 
-import br.com.erudio.data.dto.v1.PersonDTO;
+import br.com.erudio.data.dto.PersonDTO;
 import br.com.erudio.file.exporter.contract.FileExporter;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

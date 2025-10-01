@@ -1,7 +1,7 @@
 package br.com.erudio.controllers;
 
 import br.com.erudio.controllers.docs.FileControllerDocs;
-import br.com.erudio.data.dto.v1.UploadFileResponseDTO;
+import br.com.erudio.data.dto.UploadFileResponseDTO;
 import br.com.erudio.services.FileStorageService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
